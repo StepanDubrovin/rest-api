@@ -12,7 +12,7 @@ class MasterModel {
             throw err;
         }
     }
-    async getById(id: string) {
+    async getById(id: number) {
         try {
             const query = db('masters');
             return await query.where('id', id).first();
@@ -32,7 +32,7 @@ class MasterModel {
             ApiError.BadConnectToDB(errorArray);
         }
     }
-    async update (id: string, masterData: ICreateMasterData) {
+    async update (id: number, masterData: ICreateMasterData) {
         try {
             const query = db('masters');
             return await query.where('id', id).update({
@@ -44,7 +44,7 @@ class MasterModel {
             throw err;
         }
     }
-    async delete(id: string) {
+    async delete(id: number) {
         try {
             const query = db('masters');
             await query.where('id', id).delete();

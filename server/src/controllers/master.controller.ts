@@ -26,7 +26,7 @@ class MasterController {
     }
     getMasterById = async(req: Request, res: Response, next: NextFunction) => {
         try {
-            const master_id = req.params.id;
+            const master_id = parseInt(req.params.id, 10);
             const master = await this.masterService.getMasterById(master_id);
 
             if (master) {
@@ -46,7 +46,7 @@ class MasterController {
             const master_id = parseInt(req.params.id, 10);
             
             const updateMaster = await this.masterService.updateMaster(
-                master_id.toString(), 
+                master_id, 
                 req.body
             );
 
@@ -63,7 +63,7 @@ class MasterController {
         try {
             const master_id = parseInt(req.params.id, 10);
             await this.masterService.deleteMaster(
-                master_id.toString(),
+                master_id,
             )
             res.status(200).json('Мастер успешно удален');
         } catch (e) {

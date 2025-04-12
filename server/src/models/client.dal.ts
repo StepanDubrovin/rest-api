@@ -12,7 +12,7 @@ class ClientModel {
             throw err;
         }
     }
-    async getById(id: string) {
+    async getById(id: number) {
         try {
             const query = db('clients');
             return await query.where('id', id).first();
@@ -32,7 +32,7 @@ class ClientModel {
             ApiError.BadConnectToDB(errorArray);
         }
     }
-    async update (id: string, clientData: ICreateClientData) {
+    async update (id: number, clientData: ICreateClientData) {
         try {
             const query = db('clients');
             return await query.where('id', id).update({
@@ -45,7 +45,7 @@ class ClientModel {
             throw err;
         }
     }
-    async delete(id: string) {
+    async delete(id: number) {
         try {
             const query = db('clients');
             await query.where('id', id).delete();

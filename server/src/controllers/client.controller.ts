@@ -28,7 +28,7 @@ class ClientController {
 
     getClientById = async (req: Request, res: Response, next: NextFunction ) => {
         try {
-            const client_id = req.params.id;
+            const client_id = parseInt(req.params.id, 10);
             const client = await this.clientService.getClientById(client_id);
 
             if (client) {
@@ -47,7 +47,7 @@ class ClientController {
             const client_id = parseInt(req.params.id, 10);
             
             const updateClient = await this.clientService.updateClient(
-                client_id.toString(), 
+                client_id, 
                 req.body
             );
 
@@ -64,7 +64,7 @@ class ClientController {
         try {
             const client_id = parseInt(req.params.id, 10);
             await this.clientService.deleteClient(
-                client_id.toString(),
+                client_id,
             )
             res.status(200).json('Клиент успешно удален');
         } catch (e) {

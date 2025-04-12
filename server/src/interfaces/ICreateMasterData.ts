@@ -1,5 +1,5 @@
 export interface ICreateMasterData {
-    id: string;
+    id: number;
     name: string;
     specialization?: string
 }

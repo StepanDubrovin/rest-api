@@ -12,11 +12,11 @@ class MasterService {
         return await this.masterModel.getAll();
     } 
     
-    async getMasterById(id: string) {
+    async getMasterById(id: number) {
         return await this.masterModel.getById(id);
     }
 
-    async updateMaster (id: string, masterData: ICreateMasterData ) {
+    async updateMaster (id: number, masterData: ICreateMasterData ) {
             const existingMaster = await this.masterModel.getById(id)
     
             if (!existingMaster) {
@@ -26,7 +26,7 @@ class MasterService {
             return this.masterModel.update(id, masterData);
         }
     
-    async deleteMaster (id: string) {
+    async deleteMaster (id: number) {
         return this.masterModel.delete(id);
     }
 }

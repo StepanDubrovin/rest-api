@@ -12,11 +12,11 @@ class ClientService {
         return await this.clientModel.getAll();
     }
 
-    async getClientById(id: string) {
+    async getClientById(id: number) {
         return await this.clientModel.getById(id);
     }
 
-    async updateClient (id: string, clientData: ICreateClientData ) {
+    async updateClient (id: number, clientData: ICreateClientData ) {
         const existingClient = await this.clientModel.getById(id)
 
         if (!existingClient) {
@@ -26,7 +26,7 @@ class ClientService {
         return this.clientModel.update(id, clientData);
     }
 
-    async deleteClient (id: string) {
+    async deleteClient (id: number) {
         return this.clientModel.delete(id);
     }
 }
