@@ -5,15 +5,19 @@ export async function up(knex: Knex): Promise<void> {
     return knex.schema
         .createTable('appointments', function (table) {
             table.increments('id').primary();
-            table.integer('client_id').references('id')
-                .inTable('clients').onDelete('CASCADE');
-            table.integer('master_id').references('id')
-                .inTable('masters').onDelete('CASCADE');
-            table.integer('provider_id').nullable().references('id')
-                .inTable('providers').onDelete('SET NULL');
-            table.timestamp('appointment_date').notNullable();
-            table.string('status').defaultTo('pending');
-            table.text('notes')
+
+            table.integer('client_id').unsigned().notNullable()
+                .references('id').inTable('users').onDelete('CASCADE');
+    
+            table.integer('master_id').unsigned().notNullable()
+                .references('id').inTable('users').onDelete('CASCADE');
+    
+            table.integer('provider_id').unsigned().nullable()
+                .references('id').inTable('providers').onDelete('SET NULL');
+    
+            table.enu('status', ['В ожидании', 'Подтверждено', 'В работе', 'Завершено', 'Отменено' ])
+                .defaultTo('В ожидании').notNullable();
+            table.text('notes').nullable();
         })
 }
 
