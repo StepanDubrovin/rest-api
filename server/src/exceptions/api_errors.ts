@@ -18,4 +18,17 @@ export class ApiError extends Error {
     static NotFound(message: string, errors: string[] = []) {
         return new ApiError(404, message, errors);
     }
+
+    static Unauthorized(message: string = 'Пользователь не авторизован', errors: string[] = []) {
+        return new ApiError(401, message, errors)
+    }
+
+    static Forbidden(message: string = 'Доступ запрещен', errors: string[] = [] ) {
+        return new ApiError(403, message, errors)
+    }
+
+    static Internal(message: string = "Ошибка сервера") {
+        return new ApiError(500, message);
+    }
+    
 }
