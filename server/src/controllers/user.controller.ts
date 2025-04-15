@@ -123,6 +123,14 @@ class UserController {
         }
     }
 
+    checkAuth = async (req: any, res: Response, next: NextFunction) => {
+        try {
+            res.status(200).json({valitToken: true})
+        } catch (e) {
+            next(e);
+        }
+    }
+
 
 }
 
